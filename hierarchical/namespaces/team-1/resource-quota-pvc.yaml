@@ -1,5 +1,3 @@
-
-   
 # ResourceQuota Reference: https://kubernetes.io/docs/concepts/policy/resource-quotas/
 kind: ResourceQuota
 apiVersion: v1

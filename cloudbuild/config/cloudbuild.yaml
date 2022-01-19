@@ -4,6 +4,7 @@ steps:
 substitutions:
   _TRIGGER_VAR_EXAMPLE: Default Value
 logsBucket: 'gcs://main-us-central1-e887'
-serviceAccount: 'projects/shared-network-e887/serviceAccounts/cb-ci-user@shared-network-e887.iam.gserviceaccount.com'
+serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/cb-ci-user@cloudbuild-sa@${PROJECT_NUMBER}.iam.gserviceaccount.com'
 options:
-  logging: GCS_ONLY
+  dynamic_substitutions: true
+  # logging: GCS_ONLY

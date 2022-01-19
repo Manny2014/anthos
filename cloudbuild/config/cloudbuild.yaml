@@ -2,7 +2,7 @@ steps:
 - name: 'bash'
   args: ['echo', 'CustomMsg: $_CUSTOM_MSG\nCommitSHA: $COMMIT_SHA']
 substitutions:
-  _CUSTOM_MSG: From Variables
+  _TRIGGER_VAR_EXAMPLE: Default Value
 # logsBucket: 'gcs://main-us-central1-e887'
 # serviceAccount: 'projects/shared-network-e887/serviceAccounts/cb-ci-user'
 # options:

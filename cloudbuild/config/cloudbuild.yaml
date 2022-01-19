@@ -1,6 +1,8 @@
 steps:
 - name: 'bash'
-  args: ['echo', 'Hello world!']
+  args: ['echo', 'Hello $_HELLO_MSG']
+substitutions:
+  _HELLO_MSG: From Variables
 # logsBucket: 'LOGS_BUCKET_LOCATION'
 # serviceAccount: 'projects/PROJECT_ID/serviceAccounts/SERVICE_ACCOUNT'
 # options:

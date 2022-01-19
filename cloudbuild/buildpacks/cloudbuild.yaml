@@ -1,8 +1,9 @@
 steps:
 - name: 'bash'
   args: ['echo', 'CustomMsg: $_CUSTOM_MSG\nCommitSHA: $COMMIT_SHA']
+# logsBucket: gcs://
 substitutions:
-  _CUSTOM_MSG: From Variables
+  _CUSTOM_MSG: From Variables  
 # logsBucket: 'LOGS_BUCKET_LOCATION'
 # serviceAccount: 'projects/PROJECT_ID/serviceAccounts/SERVICE_ACCOUNT'
 # options:

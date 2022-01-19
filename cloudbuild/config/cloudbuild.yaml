@@ -3,7 +3,7 @@ steps:
   args: ['echo', 'CustomMsg: $_CUSTOM_MSG\nCommitSHA: $COMMIT_SHA']
 substitutions:
   _CUSTOM_MSG: From Variables
-# logsBucket: 'LOGS_BUCKET_LOCATION'
-# serviceAccount: 'projects/PROJECT_ID/serviceAccounts/SERVICE_ACCOUNT'
+logsBucket: 'gcs://main-us-central1-e887/$PROJECT_ID'
+serviceAccount: 'projects/shared-network-e887/serviceAccounts/cb-ci-user'
 # options:
 #   logging: GCS_ONLY

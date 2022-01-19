@@ -1,6 +1,6 @@
 steps:
 - name: 'bash'
-  args: ['echo', 'CustomMsg: $_CUSTOM_MSG\nCommitSHA: $COMMIT_SHA']
+  args: ['echo', 'CustomMsg: $_TRIGGER_VAR_EXAMPLE\nCommitSHA: $COMMIT_SHA']
 substitutions:
   _TRIGGER_VAR_EXAMPLE: Default Value
 # logsBucket: 'gcs://main-us-central1-e887'

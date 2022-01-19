@@ -7,4 +7,4 @@ logsBucket: 'gcs://main-us-central1-e887'
 serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/cb-ci-user@cloudbuild-sa@${PROJECT_NUMBER}.iam.gserviceaccount.com'
 options:
   dynamic_substitutions: true
-  # logging: GCS_ONLY
+  #logging: GCS_ONLY

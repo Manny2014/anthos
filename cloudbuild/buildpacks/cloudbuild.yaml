@@ -1,4 +1,0 @@
-# logsBucket: 'gcs://main-us-central1-e887'
-# serviceAccount: 'projects/shared-network-e887/serviceAccounts/cb-ci-user@shared-network-e887.iam.gserviceaccount.com'
-# options:
-#   logging: GCS_ONLY

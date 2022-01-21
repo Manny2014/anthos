@@ -1,0 +1,27 @@
+# PUSH => gcloud beta builds triggers import --source cloudbuild/buildpacks/trigger.yaml
+# RUN  => gcloud beta builds triggers run buildpacks --branch master  
+build:
+  logs_bucket: gs://cloudbuild-us-central1-0812/$TRIGGER_NAME/$BRANCH_NAME
+  images:
+  - us-central1-docker.pkg.dev/shared-network-dbe4/main/$TRIGGER_NAME/python:$COMMIT_SHA
+  options:
+    # logging: CLOUD_LOGGING_ONLY
+    dynamic_substitutions: true
+  steps:
+  - args:
+    - pack
+    - build
+    - us-central1-docker.pkg.dev/shared-network-dbe4/main/$TRIGGER_NAME/python:$COMMIT_SHA
+    - --builder
+    - gcr.io/buildpacks/builder
+    dir: cloudbuild/buildpacks
+    name: gcr.io/k8s-skaffold/pack
+createTime: '2022-01-21T04:27:06.607723210Z'
+github:
+  name: anthos
+  owner: Manny2014
+  push:
+    branch: ^master$
+id: 128faa5d-954e-45f3-8e34-441d84f77165
+name: buildpacks
+serviceAccount: projects/dev-playground-8566/serviceAccounts/cloudbuild-sa@132426367997.iam.gserviceaccount.com

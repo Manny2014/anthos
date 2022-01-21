@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-world-rest-api
+  namespace: default
+imagePullSecrets:
+- name: artifact-registry
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world-rest-api
+  name: hello-world-rest-api
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world-rest-api
+  template:
+    metadata:
+      labels:
+        app: hello-world-rest-api
+    spec:
+      serviceAccount: hello-world-rest-api
+      containers:
+      - image: us-central1-docker.pkg.dev/shared-network-0d54/main/buildpack/python@sha256:9de76ed88a8e518f3beaf514e662c854f2609f35b9e2bfe823cf0f628bf4645d
+        name: hello-world-rest-api

@@ -14,9 +14,23 @@ build:
     - gcr.io/buildpacks/builder
     dir: cloudbuild/buildpacks
     name: gcr.io/k8s-skaffold/pack
+  - id: 'create-attestation'
+    name: 'gcr.io/$PROJECT_ID/binauthz-attestation:latest'
+    args:
+    - '--artifact-url'
+    - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
+    - '--attestor'
+    - 'projects/${_SS_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
+    - '--keyversion'
+    - 'projects/${_SS_PROJECT_ID}/locations/${_KMS_KEY_LOCATION}/keyRings/${_KMS_KEYRING_NAME}/cryptoKeys/${_KMS_KEY_NAME}/cryptoKeyVersions/${_KMS_KEY_VERSION}'
   substitutions:
     _SS_PROJECT_ID: "shared-network-0d54"
     _CB_LOGS_BUCKET: "cloudbuild-us-central1-fd8e"
+    _ATTESTOR_NAME: default-attestor 
+    _KMS_KEY_LOCATION: us-central1
+    _KMS_KEYRING_NAME: binary-auth-keyring
+    _KMS_KEY_NAME: binary-auth-key
+    _KMS_KEY_VERSION: "1"
 github:
   name: anthos
   owner: Manny2014

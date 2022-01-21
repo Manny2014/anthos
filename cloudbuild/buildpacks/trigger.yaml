@@ -12,13 +12,14 @@ build:
     - us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/$TRIGGER_NAME/python:$COMMIT_SHA
     - --builder
     - gcr.io/buildpacks/builder
+    - --push
     dir: cloudbuild/buildpacks
     name: gcr.io/k8s-skaffold/pack
   - id: 'create-attestation'
     name: us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/binauthz-attestation:latest
     args:
     - '--artifact-url'
-    - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
+    - us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/$TRIGGER_NAME/python:$COMMIT_SHA
     - '--attestor'
     - 'projects/${_SS_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
     - '--keyversion'

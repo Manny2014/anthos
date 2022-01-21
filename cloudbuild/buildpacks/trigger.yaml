@@ -16,11 +16,6 @@ build:
     - gcr.io/buildpacks/builder
     dir: cloudbuild/buildpacks
     name: gcr.io/k8s-skaffold/pack
-  - id: 'publish'
-    name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - 'gcr.io/$PROJECT_ID/binauthz-attestation:latest'
 createTime: '2022-01-21T04:27:06.607723210Z'
 github:
   name: anthos

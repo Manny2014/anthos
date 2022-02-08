@@ -6,7 +6,7 @@ metadata:
   labels:
     label-one: "value-one"
   # StorageBucket names must be globally unique. Replace ${PROJECT_ID?} with your project ID.
-  name: ${PROJECT_ID?}-team1-sample
+  name: dev-playground-5b0c-team1-sample
 spec:
   lifecycleRule:
     - action:

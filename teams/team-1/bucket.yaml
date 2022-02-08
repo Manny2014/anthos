@@ -8,6 +8,7 @@ metadata:
   # StorageBucket names must be globally unique. Replace ${PROJECT_ID?} with your project ID.
   name: dev-playground-5b0c-team1-sample
 spec:
+  location: us-central1
   lifecycleRule:
     - action:
         type: Delete

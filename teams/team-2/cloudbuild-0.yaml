@@ -1,0 +1,49 @@
+apiVersion: cloudbuild.cnrm.cloud.google.com/v1beta1
+kind: CloudBuildTrigger
+metadata:
+  name: cloudbuildtrigger-sample-cloudsourcerepo
+spec:
+  description: Cloud Build Trigger for building the master branch of the referenced Cloud Source Repository.
+  github:
+    name: anthos
+    owner: Manny2014
+    push:
+      branch: ^master$
+  includedFiles:
+  - cloudbuild/buildpacks/**
+  name: buildpack
+  serviceAccount: projects/dev-playground-5b0c/serviceAccounts/cloudbuild-sa@dev-playground-5b0c.iam.gserviceaccount.com
+  substitutions:
+    _SS_PROJECT_ID: "shared-network-b47a"
+    _CB_LOGS_BUCKET: "cloudbuild-us-central1-5cb9"
+    _ATTESTOR_NAME: default-attestor 
+    _KMS_KEY_LOCATION: us-central1
+    _KMS_KEYRING_NAME: binary-auth-keyring
+    _KMS_KEY_NAME: binary-auth-key
+    _KMS_KEY_VERSION: "1"
+  build:
+    logs_bucket: gs://$_CB_LOGS_BUCKET/$TRIGGER_NAME/$BRANCH_NAME
+    images:
+    - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
+    options:
+      # logging: CLOUD_LOGGING_ONLY
+      dynamic_substitutions: true
+    steps:
+    - args:
+      - pack
+      - build
+      - us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/$TRIGGER_NAME/python:$COMMIT_SHA
+      - --builder
+      - gcr.io/buildpacks/builder
+      - --publish
+      dir: cloudbuild/buildpacks
+      name: gcr.io/k8s-skaffold/pack
+    - id: 'create-attestation'
+      name: us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/binauthz-attestation:latest
+      args:
+      - '--artifact-url'
+      - us-central1-docker.pkg.dev/${_SS_PROJECT_ID}/main/$TRIGGER_NAME/python:$COMMIT_SHA
+      - '--attestor'
+      - 'projects/${_SS_PROJECT_ID}/attestors/${_ATTESTOR_NAME}'
+      - '--keyversion'
+      - 'projects/${_SS_PROJECT_ID}/locations/${_KMS_KEY_LOCATION}/keyRings/${_KMS_KEYRING_NAME}/cryptoKeys/${_KMS_KEY_NAME}/cryptoKeyVersions/${_KMS_KEY_VERSION}'

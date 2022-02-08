@@ -1,19 +1,19 @@
-apiVersion: storage.cnrm.cloud.google.com/v1beta1
-kind: StorageBucket
-metadata:
-  annotations:
-    cnrm.cloud.google.com/force-destroy: "true"
-  labels:
-    label-one: "value-one"
-  # StorageBucket names must be globally unique. Replace ${PROJECT_ID?} with your project ID.
-  name: dev-playground-5b0c-team1-sample
-spec:
-  location: us-central1
-  lifecycleRule:
-    - action:
-        type: Delete
-      condition:
-        age: 1
-  versioning:
-    enabled: false
-  uniformBucketLevelAccess: true
+# apiVersion: storage.cnrm.cloud.google.com/v1beta1
+# kind: StorageBucket
+# metadata:
+#   annotations:
+#     cnrm.cloud.google.com/force-destroy: "true"
+#   labels:
+#     label-one: "value-one"
+#   # StorageBucket names must be globally unique. Replace ${PROJECT_ID?} with your project ID.
+#   name: dev-playground-5b0c-team1-sample
+# spec:
+#   location: us-central1
+#   lifecycleRule:
+#     - action:
+#         type: Delete
+#       condition:
+#         age: 1
+#   versioning:
+#     enabled: false
+#   uniformBucketLevelAccess: true

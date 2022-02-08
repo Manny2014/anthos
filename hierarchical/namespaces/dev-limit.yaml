@@ -1,0 +1,27 @@
+# LimitRange Reference: https://kubernetes.io/docs/concepts/policy/limit-range/
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limits
+  annotations:
+    configmanagement.gke.io/cluster-selector: select-env-dev
+spec:
+  limits:
+  - max:
+      cpu: "300m"
+      memory: 3Gi
+    type: Container
+  - type: PersistentVolumeClaim
+    max:
+      storage: 2Gi
+---
+# ResourceQuota Reference: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+kind: ResourceQuota
+apiVersion: v1
+metadata:
+  name: pvc
+  annotations:
+    configmanagement.gke.io/cluster-selector: select-env-dev
+spec:
+  hard:
+    persistentvolumeclaims: "3"

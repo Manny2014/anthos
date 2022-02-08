@@ -1,0 +1,13 @@
+apiVersion: configsync.gke.io/v1alpha1
+kind: RepoSync
+metadata:
+  name: repo-sync
+  # namespace: hil
+spec:
+  git:
+    repo: https://github.com/Manny2014/anthos
+    revision: HEAD
+    branch: master
+    dir: "teams/team-1"
+    auth: none
+

@@ -23,7 +23,7 @@ spec:
     _KMS_KEY_VERSION: "1"
   build:
     logsBucketRef: 
-      externa: gs://$_CB_LOGS_BUCKET/$TRIGGER_NAME/$BRANCH_NAME
+      external: gs://$_CB_LOGS_BUCKET/$TRIGGER_NAME/$BRANCH_NAME
     images:
     - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
     options:

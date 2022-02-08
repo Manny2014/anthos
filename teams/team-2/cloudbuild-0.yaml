@@ -3,7 +3,7 @@ kind: CloudBuildTrigger
 metadata:
   name: team-2-cb-trigger-0
   annotations:
-    configmanagement.gke.io/cluster-selector: select-env-dev
+    configmanagement.gke.io/cluster-selector: select-env-fake
 spec:
   description: Cloud Build Trigger for building the master branch of the referenced Cloud Source Repository.
   github:

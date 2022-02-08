@@ -1,7 +1,7 @@
 apiVersion: cloudbuild.cnrm.cloud.google.com/v1beta1
 kind: CloudBuildTrigger
 metadata:
-  name: team-2-cb-trigger-0
+  name: team-2-cb-trigger-1
 spec:
   description: Cloud Build Trigger for building the master branch of the referenced Cloud Source Repository.
   github:
@@ -28,7 +28,7 @@ spec:
     - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
     options:
       # logging: CLOUD_LOGGING_ONLY
-      dynamic_substitutions: true
+      dynamicSubstitutions: true
     step:
     - args:
       - pack

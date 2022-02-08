@@ -11,8 +11,8 @@ spec:
       branch: ^master$
   includedFiles:
   - cloudbuild/buildpacks/**
-  name: buildpack
-  serviceAccount: projects/dev-playground-5b0c/serviceAccounts/cloudbuild-sa@dev-playground-5b0c.iam.gserviceaccount.com
+  serviceAccountRef: 
+    external: projects/dev-playground-5b0c/serviceAccounts/cloudbuild-sa@dev-playground-5b0c.iam.gserviceaccount.com
   substitutions:
     _SS_PROJECT_ID: "shared-network-b47a"
     _CB_LOGS_BUCKET: "cloudbuild-us-central1-5cb9"
@@ -22,7 +22,8 @@ spec:
     _KMS_KEY_NAME: binary-auth-key
     _KMS_KEY_VERSION: "1"
   build:
-    logs_bucket: gs://$_CB_LOGS_BUCKET/$TRIGGER_NAME/$BRANCH_NAME
+    logsBucketRef: 
+      externa: gs://$_CB_LOGS_BUCKET/$TRIGGER_NAME/$BRANCH_NAME
     images:
     - us-central1-docker.pkg.dev/$_SS_PROJECT_ID/main/$TRIGGER_NAME/python:$COMMIT_SHA
     options:

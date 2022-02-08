@@ -1,0 +1,9 @@
+applySpecVersion: 1
+spec:
+  configSync:
+    enabled: true
+    sourceFormat: hierarchy
+    syncRepo: https://github.com/Manny2014/anthos
+    syncBranch: master
+    secretType: none
+    policyDir: hierarchical

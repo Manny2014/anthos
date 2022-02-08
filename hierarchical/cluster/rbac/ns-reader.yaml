@@ -2,6 +2,8 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: namespace-reader
+  annotations:
+    configmanagement.gke.io/cluster-selector: select-env-dev
 rules:
 - apiGroups: [""]
   resources: ["namespaces"]
